@@ -2,11 +2,13 @@ package com.projeto.ads.pdm.moviesManager.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.projeto.ads.pdm.moviesManager.databinding.ActivityMovieBinding
 import com.projeto.ads.pdm.moviesManager.model.Constant.EXTRA_MOVIE
+import com.projeto.ads.pdm.moviesManager.model.Constant.VIEW_MOVIE
 import com.projeto.ads.pdm.moviesManager.model.entity.Movie
 
 class MovieActivity : AppCompatActivity()  {
@@ -20,6 +22,39 @@ class MovieActivity : AppCompatActivity()  {
         setContentView(activityMovieBinding.root)
 
         activityMovieBinding.gradeEt.isEnabled = false
+
+        val receivedPerson =  intent.getParcelableExtra<Movie>(EXTRA_MOVIE)
+        receivedPerson?.let{ _receivedPerson ->
+            activityMovieBinding.titleTv.text = "Editar Filme"
+            activityMovieBinding.nameEt.isEnabled = false
+            with(activityMovieBinding)
+            {
+                with(_receivedPerson)
+                {
+                    nameEt.setText(name)
+                    yearEt.setText(year.toString())
+                    studioEt.setText(studio)
+                    durationEt.setText(duration.toString())
+                    gradeEt.setText(if(grade == -1) "" else grade.toString())
+                    watchedCb.isChecked = watched
+                    genreEt.setText(genre)
+
+                    if(watched) gradeEt.isEnabled = true;
+                }
+            }
+        }
+
+        if (intent.getBooleanExtra(VIEW_MOVIE, false)) {
+            activityMovieBinding.titleTv.text = "Visualizar Filme"
+            activityMovieBinding.nameEt.isEnabled = false
+            activityMovieBinding.yearEt.isEnabled = false
+            activityMovieBinding.studioEt.isEnabled = false
+            activityMovieBinding.durationEt.isEnabled = false
+            activityMovieBinding.gradeEt.isEnabled = false
+            activityMovieBinding.watchedCb.isEnabled = false
+            activityMovieBinding.genreEt.isEnabled = false
+            activityMovieBinding.saveBt.visibility = View.GONE
+        }
 
         activityMovieBinding.saveBt.setOnClickListener {
             val movieName = activityMovieBinding.nameEt.text.toString()
