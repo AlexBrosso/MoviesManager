@@ -89,13 +89,19 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             R.id.filterMovieNameMi -> {
-                movieList.sortBy { it.name }
-                movieAdapter.notifyDataSetChanged()
+                if(movieList.size > 0) {
+                    movieList.sortBy { it.name }
+                    movieAdapter.notifyDataSetChanged()
+                }
+                else Toast.makeText(this, "Não existem filmes cadastrados.", Toast.LENGTH_SHORT).show()
                 true
             }
             R.id.filterMovieGradeMi -> {
-                movieList.sortBy { it.grade }
-                movieAdapter.notifyDataSetChanged()
+                if(movieList.size > 0) {
+                    movieList.sortBy { it.grade }
+                    movieAdapter.notifyDataSetChanged()
+                }
+                else Toast.makeText(this, "Não existem filmes cadastrados.", Toast.LENGTH_SHORT).show()
                 true
             }
             R.id.addMovieMi -> {
