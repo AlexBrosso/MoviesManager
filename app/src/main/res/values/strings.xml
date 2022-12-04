@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MoviesManager</string>
+    <string name="cancel">Retornar</string>
+    <string name="confirm">Confirmar</string>
+    <string name="name">Nome</string>
+    <string name="year">Ano de Lançamento</string>
+    <string name="duration">Duração (Em minutos)</string>
+    <string name="grade">Nota</string>
+    <string name="watched">Filme Assistido</string>
+    <string name="add_movie">Adicionar Filme</string>
+</resources>
