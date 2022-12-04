@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.projeto.ads.pdm.moviesManager.R
+import com.projeto.ads.pdm.moviesManager.controller.MovieRoomController
 import com.projeto.ads.pdm.moviesManager.databinding.ActivityMainBinding
 import com.projeto.ads.pdm.moviesManager.model.Constant.EXTRA_MOVIE
 import com.projeto.ads.pdm.moviesManager.model.entity.Movie
@@ -25,6 +26,10 @@ class MainActivity : AppCompatActivity() {
 
     private var adding : Boolean = false
 
+    private val movieController: MovieRoomController by lazy {
+        MovieRoomController(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activityMainBinding.root)
@@ -34,18 +39,19 @@ class MainActivity : AppCompatActivity() {
             if (result.resultCode == RESULT_OK) {
                 val movie = result.data?.getParcelableExtra<Movie>(EXTRA_MOVIE)
                 movie?.let { _movie->
-                    val position = movieList.indexOfFirst { it.name == movie.name } //Vai ser Alterado
+                    val position = movieList.indexOfFirst { it.name == movie.name }
                     if (position != -1) {
                         if(!adding) {
-                            Toast.makeText(this, "Editando", Toast.LENGTH_LONG).show() //Vai ser Alterado
+                            movieController.update(_movie)
                         }
                         else {
                             Toast.makeText(this, "Não é possível cadastrar mais de um filme com o mesmo nome.", Toast.LENGTH_LONG).show()
                         }
                     }
                     else {
-                        Toast.makeText(this, "Adicionando", Toast.LENGTH_LONG).show() //Vai ser Alterado
+                        movieController.insert(_movie)
                     }
+                    //Adapter.notifyDataSetChanged() Implementação Futura
                 }
             }
             else Toast.makeText(this, "Operação cancelada.", Toast.LENGTH_SHORT).show()
@@ -67,5 +73,11 @@ class MainActivity : AppCompatActivity() {
             }
             else -> { false }
         }
+    }
+
+    fun updateMovieList(_movieList: MutableList<Movie>) {
+        movieList.clear()
+        movieList.addAll(_movieList)
+        //Adapter.notifyDataSetChanged() Implementação Futura
     }
 }

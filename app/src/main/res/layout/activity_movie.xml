@@ -35,6 +35,18 @@
         app:layout_constraintTop_toBottomOf="@id/titleTv" />
 
     <EditText
+        android:id="@+id/studioEt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/studio"
+        android:fontFamily="sans-serif-condensed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameEt" />
+
+    <EditText
         android:id="@+id/yearEt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -44,7 +56,7 @@
         android:fontFamily="sans-serif-condensed"
         app:layout_constraintEnd_toStartOf="@id/durationEt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameEt" />
+        app:layout_constraintTop_toBottomOf="@id/studioEt" />
 
     <EditText
         android:id="@+id/durationEt"
@@ -56,7 +68,7 @@
         android:fontFamily="sans-serif-condensed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/yearEt"
-        app:layout_constraintTop_toBottomOf="@+id/nameEt" />
+        app:layout_constraintTop_toBottomOf="@+id/studioEt" />
 
     <EditText
         android:id="@+id/gradeEt"

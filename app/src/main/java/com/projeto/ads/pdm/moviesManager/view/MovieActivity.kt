@@ -24,16 +24,18 @@ class MovieActivity : AppCompatActivity()  {
         activityMovieBinding.saveBt.setOnClickListener {
             val movieName = activityMovieBinding.nameEt.text.toString()
             val movieYear = activityMovieBinding.yearEt.text.toString()
+            val movieStudio = activityMovieBinding.studioEt.text.toString()
             val movieDuration = activityMovieBinding.durationEt.text.toString()
-            val movieGrade = if(!activityMovieBinding.gradeEt.text.isEmpty()) activityMovieBinding.gradeEt.text.toString().toInt() else -1
+            val movieGrade = if(activityMovieBinding.gradeEt.text.isNotEmpty()) activityMovieBinding.gradeEt.text.toString().toInt() else -1
             val movieWatched = activityMovieBinding.watchedCb.isChecked
             val movieGenre = activityMovieBinding.genreEt.text.toString()
 
-            if (!movieName.isNullOrEmpty() && !movieYear.isNullOrEmpty() && !movieDuration.isNullOrEmpty() && !movieGenre.isNullOrEmpty())
+            if (!movieName.isNullOrEmpty() && !movieYear.isNullOrEmpty() && !movieYear.isNullOrEmpty() && !movieDuration.isNullOrEmpty() && !movieGenre.isNullOrEmpty())
             {
                 val movie = Movie(
                     name = movieName,
                     year = movieYear.toInt(),
+                    studio = movieStudio,
                     duration = movieDuration.toInt(),
                     grade = movieGrade,
                     watched = movieWatched,
