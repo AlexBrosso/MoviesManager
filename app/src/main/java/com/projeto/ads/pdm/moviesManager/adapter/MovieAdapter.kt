@@ -31,7 +31,7 @@ class MovieAdapter(context : Context, private val movieList: MutableList<Movie>)
         with(movieTileView?.tag as TileMovieHolder) {
             nameTv.text = movie.name
             genreAndYearTv.text = movie.genre + " - " + movie.year.toString()
-            gradeTv.text = if(movie.grade != -1) " Nota: " + movie.grade.toString() else " Nota: Indefinida"
+            gradeTv.text = if(movie.grade != 11) " Nota: " + movie.grade.toString() else " Nota: Não atribuida"
         }
 
         return movieTileView

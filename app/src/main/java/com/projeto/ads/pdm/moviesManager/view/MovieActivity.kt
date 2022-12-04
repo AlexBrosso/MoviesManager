@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.projeto.ads.pdm.moviesManager.R
 import com.projeto.ads.pdm.moviesManager.databinding.ActivityMovieBinding
 import com.projeto.ads.pdm.moviesManager.model.Constant.EXTRA_MOVIE
 import com.projeto.ads.pdm.moviesManager.model.Constant.VIEW_MOVIE
@@ -21,7 +23,11 @@ class MovieActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(activityMovieBinding.root)
 
-        activityMovieBinding.gradeEt.isEnabled = false
+        activityMovieBinding.gradeSp.adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, resources.getStringArray(R.array.grades))
+        activityMovieBinding.genreSp.adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, resources.getStringArray(R.array.genres))
+
+        activityMovieBinding.gradeSp.setSelection(11)
+        activityMovieBinding.gradeSp.isEnabled = false
 
         val receivedPerson =  intent.getParcelableExtra<Movie>(EXTRA_MOVIE)
         receivedPerson?.let{ _receivedPerson ->
@@ -35,11 +41,11 @@ class MovieActivity : AppCompatActivity()  {
                     yearEt.setText(year.toString())
                     studioEt.setText(studio)
                     durationEt.setText(duration.toString())
-                    gradeEt.setText(if(grade == -1) "" else grade.toString())
+                    gradeSp.setSelection(grade)
                     watchedCb.isChecked = watched
-                    genreEt.setText(genre)
+                    genreSp.setSelection(resources.getStringArray(R.array.genres).indexOf(genre))
 
-                    if(watched) gradeEt.isEnabled = true;
+                    if(watched) gradeSp.isEnabled = true;
                 }
             }
         }
@@ -50,9 +56,9 @@ class MovieActivity : AppCompatActivity()  {
             activityMovieBinding.yearEt.isEnabled = false
             activityMovieBinding.studioEt.isEnabled = false
             activityMovieBinding.durationEt.isEnabled = false
-            activityMovieBinding.gradeEt.isEnabled = false
+            activityMovieBinding.gradeSp.isEnabled = false
             activityMovieBinding.watchedCb.isEnabled = false
-            activityMovieBinding.genreEt.isEnabled = false
+            activityMovieBinding.genreSp.isEnabled = false
             activityMovieBinding.saveBt.visibility = View.GONE
         }
 
@@ -61,9 +67,9 @@ class MovieActivity : AppCompatActivity()  {
             val movieYear = activityMovieBinding.yearEt.text.toString()
             val movieStudio = activityMovieBinding.studioEt.text.toString()
             val movieDuration = activityMovieBinding.durationEt.text.toString()
-            val movieGrade = if(activityMovieBinding.gradeEt.text.isNotEmpty()) activityMovieBinding.gradeEt.text.toString().toInt() else -1
+            val movieGrade = activityMovieBinding.gradeSp.selectedItemPosition;
             val movieWatched = activityMovieBinding.watchedCb.isChecked
-            val movieGenre = activityMovieBinding.genreEt.text.toString()
+            val movieGenre = activityMovieBinding.genreSp.selectedItem.toString()
 
             if (!movieName.isNullOrEmpty() && !movieYear.isNullOrEmpty() && !movieYear.isNullOrEmpty() && !movieDuration.isNullOrEmpty() && !movieGenre.isNullOrEmpty())
             {
@@ -91,10 +97,10 @@ class MovieActivity : AppCompatActivity()  {
 
         activityMovieBinding.watchedCb.setOnCheckedChangeListener { _, isChecked ->
             if(!isChecked){
-                activityMovieBinding.gradeEt.text = null
+                activityMovieBinding.gradeSp.setSelection(11)
             }
 
-            activityMovieBinding.gradeEt.isEnabled = isChecked
+            activityMovieBinding.gradeSp.isEnabled = isChecked
         }
     }
 }

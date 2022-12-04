@@ -70,13 +70,12 @@
         app:layout_constraintStart_toEndOf="@id/yearEt"
         app:layout_constraintTop_toBottomOf="@+id/studioEt" />
 
-    <EditText
-        android:id="@+id/gradeEt"
+    <Spinner
+        android:id="@+id/gradeSp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/grade"
-        android:inputType="numberDecimal"
         android:fontFamily="sans-serif-condensed"
         app:layout_constraintEnd_toStartOf="@id/watchedCb"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,21 +89,21 @@
         android:ems="10"
         android:fontFamily="sans-serif-condensed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/gradeEt"
+        app:layout_constraintStart_toEndOf="@id/gradeSp"
         app:layout_constraintTop_toBottomOf="@+id/durationEt"
         />
 
-    <EditText
-        android:id="@+id/genreEt"
+    <Spinner
+        android:id="@+id/genreSp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Vai ser modificado"
-        android:inputType="textPersonName"
+        android:hint="@string/genre"
+        android:layout_margin="10dp"
         android:fontFamily="sans-serif-condensed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gradeEt" />
+        app:layout_constraintTop_toBottomOf="@+id/gradeSp" />
 
     <Button
         android:id="@+id/cancelBt"
@@ -117,7 +116,7 @@
         android:layout_marginRight="5dp"
         app:layout_constraintEnd_toStartOf="@id/saveBt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/genreEt" />
+        app:layout_constraintTop_toBottomOf="@id/genreSp" />
 
     <Button
         android:id="@+id/saveBt"
@@ -129,6 +128,6 @@
         android:backgroundTint="@color/confirm"
         app:layout_constraintStart_toEndOf="@id/cancelBt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/genreEt" />
+        app:layout_constraintTop_toBottomOf="@id/genreSp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

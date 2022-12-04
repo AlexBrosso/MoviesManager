@@ -12,4 +12,30 @@
     <string name="edit_movie">Editar Filme</string>
     <string name="remove_movie">Remover Filme</string>
     <string name="filter">Filtrar Filmes</string>
+    <string name="genre">Gênero</string>
+    <string-array name="grades">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>Sem atribuição</item>
+    </string-array>
+    <string-array name="genres">
+        <item>Ação</item>
+        <item>Aventura</item>
+        <item>Comédia</item>
+        <item>Drama</item>
+        <item>Fantasia</item>
+        <item>Ficção Científica</item>
+        <item>Romance</item>
+        <item>Suspense</item>
+        <item>Terror</item>
+    </string-array>
 </resources>
